@@ -702,27 +702,21 @@
       
       // Initialize banner
       function initAppBanner() {
-        // Debug: log platform detection
-        console.log('User Agent:', navigator.userAgent);
-        console.log('Is iOS:', isIOS());
-        console.log('Is Android:', isAndroid());
-        console.log('Is Mobile:', isMobile());
+        const banner = document.getElementById('smartAppBanner');
         
-        // CRITICAL: Don't show custom banner for iOS (they have native Smart App Banner)
+        // ALWAYS hide the custom banner initially
+        banner.style.display = 'none';
+        
+        // If iOS, keep banner hidden (native iOS banner will show instead)
         if (isIOS()) {
-          console.log('iOS detected - skipping custom banner');
           return;
         }
         
-        // Only show for Android mobile users who haven't dismissed it
-        if (!isAndroid() || !isMobile() || isAppInstalled()) {
-          console.log('Not showing banner - Android:', isAndroid(), 'Mobile:', isMobile(), 'Dismissed:', isAppInstalled());
-          return;
+        // Only show custom banner for Android mobile users who haven't dismissed it
+        if (isAndroid() && isMobile() && !isAppInstalled()) {
+          // Show banner after a short delay
+          setTimeout(showAppBanner, 1500);
         }
-        
-        console.log('Showing Android banner');
-        // Show banner after a short delay
-        setTimeout(showAppBanner, 1500);
         
         // Set up event listeners
         document.getElementById('appBannerClose').addEventListener('click', dismissBanner);
