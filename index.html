@@ -701,18 +701,18 @@
       
       // Initialize banner
       function initAppBanner() {
-        // Only show for mobile users who haven't dismissed it
-        if (!isMobile() || isAppInstalled()) {
-          return;
-        }
-        
         // Don't show for iOS (they have native Smart App Banner)
         if (isIOS()) {
           return;
         }
         
+        // Only show for Android mobile users who haven't dismissed it
+        if (!isAndroid() || !isMobile() || isAppInstalled()) {
+          return;
+        }
+        
         // Show banner after a short delay
-        setTimeout(showAppBanner, 1000);
+        setTimeout(showAppBanner, 1500);
         
         // Set up event listeners
         document.getElementById('appBannerClose').addEventListener('click', dismissBanner);
