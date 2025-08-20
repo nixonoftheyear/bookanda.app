@@ -703,19 +703,38 @@
       // Initialize banner
       function initAppBanner() {
         const banner = document.getElementById('smartAppBanner');
+        const installButton = document.getElementById('appBannerInstall');
         
         // ALWAYS hide the custom banner initially
         banner.style.display = 'none';
         
-        // If iOS, keep banner hidden (native iOS banner will show instead)
-        if (isIOS()) {
-          return;
-        }
+        // Debug logging
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Is Mobile:', isMobile());
+        console.log('Is Android:', isAndroid());
+        console.log('Is iOS:', isIOS());
         
-        // Only show custom banner for Android mobile users who haven't dismissed it
-        if (isAndroid() && isMobile() && !isAppInstalled()) {
-          // Show banner after a short delay
-          setTimeout(showAppBanner, 1500);
+        // Update banner content and behavior based on platform
+        if (isIOS()) {
+          // For iOS, use App Store link and let native banner handle it
+          console.log('iOS detected - using native Smart App Banner');
+          return; // Native iOS banner will show
+        } else if (isAndroid()) {
+          // For Android, show custom banner with Play Store link
+          console.log('Android detected - showing custom banner');
+          installButton.textContent = 'INSTALLA';
+          
+          if (isMobile() && !isAppInstalled()) {
+            setTimeout(showAppBanner, 1500);
+          }
+        } else {
+          // For other platforms, show generic banner
+          console.log('Other platform detected');
+          installButton.textContent = 'SCARICA APP';
+          
+          if (isMobile() && !isAppInstalled()) {
+            setTimeout(showAppBanner, 1500);
+          }
         }
         
         // Set up event listeners
@@ -723,9 +742,14 @@
         
         document.getElementById('appBannerInstall').addEventListener('click', function() {
           if (isAndroid()) {
+            console.log('Redirecting to Google Play Store');
             window.open('https://play.google.com/store/apps/details?id=com.bookanda', '_blank');
+          } else if (isIOS()) {
+            console.log('Redirecting to App Store');
+            window.open('https://apps.apple.com/app/bookanda/idTUO_APP_ID', '_blank');
           } else {
-            // Fallback for other platforms
+            // Fallback - show both options or default to Play Store
+            console.log('Redirecting to Google Play Store (fallback)');
             window.open('https://play.google.com/store/apps/details?id=com.bookanda', '_blank');
           }
           dismissBanner();
