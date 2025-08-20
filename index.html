@@ -666,7 +666,8 @@
       }
       
       function isIOS() {
-        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent) || 
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       }
       
       function isAppInstalled() {
@@ -701,16 +702,25 @@
       
       // Initialize banner
       function initAppBanner() {
-        // Don't show for iOS (they have native Smart App Banner)
+        // Debug: log platform detection
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Is iOS:', isIOS());
+        console.log('Is Android:', isAndroid());
+        console.log('Is Mobile:', isMobile());
+        
+        // CRITICAL: Don't show custom banner for iOS (they have native Smart App Banner)
         if (isIOS()) {
+          console.log('iOS detected - skipping custom banner');
           return;
         }
         
         // Only show for Android mobile users who haven't dismissed it
         if (!isAndroid() || !isMobile() || isAppInstalled()) {
+          console.log('Not showing banner - Android:', isAndroid(), 'Mobile:', isMobile(), 'Dismissed:', isAppInstalled());
           return;
         }
         
+        console.log('Showing Android banner');
         // Show banner after a short delay
         setTimeout(showAppBanner, 1500);
         
