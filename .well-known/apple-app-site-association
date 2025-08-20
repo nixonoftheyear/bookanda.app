@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "ABCD123456.com.bookanda",
+        "appID": "TEAM_ID.com.floatingvoids.bookanda",
         "paths": [ "/", "/*" ]
       }
     ]
