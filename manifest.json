@@ -1,0 +1,40 @@
+{
+  "name": "Bookanda",
+  "short_name": "Bookanda",
+  "description": "Prenota servizi presso barbieri, parrucchieri e tattoo artist",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "lang": "it",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "lifestyle"],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.bookanda",
+      "id": "com.bookanda"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/bookanda/idTUO_APP_ID",
+      "id": "TUO_APP_ID"
+    }
+  ]
+}

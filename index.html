@@ -4,6 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bookanda - Prenota e Gestisci</title>
+  
+  <!-- iOS Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=TUO_APP_ID, app-argument=https://bookanda.com">
+  
+  <!-- Android/Chrome App Install Banner -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Meta tags for better SEO and app promotion -->
+  <meta name="description" content="Prenota servizi presso barbieri, parrucchieri e tattoo artist. Gestisci la tua attività con semplicità.">
+  <meta name="keywords" content="barbiere, parrucchiere, prenotazioni, bookanda, app">
+  
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="Bookanda - Prenota senza stress">
+  <meta property="og:description" content="La piattaforma completa che connette clienti e professionisti">
+  <meta property="og:image" content="https://bookanda.com/og-image.jpg">
+  <meta property="og:url" content="https://bookanda.com">
+  
+  <!-- Apple Web App -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bookanda">
+  
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
@@ -365,9 +387,122 @@
         grid-template-columns: 1fr;
       }
     }
+    
+    /* Smart App Banner Styles */
+    .smart-app-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 12px 16px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      z-index: 10000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+    }
+    
+    .smart-app-banner.show {
+      display: flex;
+    }
+    
+    .app-banner-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .app-banner-content {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .app-banner-title {
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 2px;
+    }
+    
+    .app-banner-subtitle {
+      color: #666;
+      font-size: 12px;
+    }
+    
+    .app-banner-button {
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    .app-banner-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #666;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .header.with-banner {
+      top: 84px;
+    }
+    
+    .main.with-banner {
+      padding-top: 154px;
+    }
+    
+    @media (max-width: 480px) {
+      .smart-app-banner {
+        padding: 10px 12px;
+      }
+      
+      .app-banner-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+      
+      .app-banner-button {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Smart App Banner for Android -->
+  <div id="smartAppBanner" class="smart-app-banner">
+    <div class="app-banner-icon">B</div>
+    <div class="app-banner-content">
+      <div class="app-banner-title">Bookanda</div>
+      <div class="app-banner-subtitle">Prenota senza stress</div>
+    </div>
+    <button class="app-banner-button" id="appBannerInstall">INSTALLA</button>
+    <button class="app-banner-close" id="appBannerClose">×</button>
+  </div>
+
   <header class="header">
     <nav class="nav">
       <a href="#" class="logo">Bookanda</a>
@@ -487,5 +622,89 @@
       <p class="footer-text">© 2025 Bookanda. La piattaforma per prenotazioni senza stress.</p>
     </div>
   </footer>
+
+  <script>
+    // Smart App Banner Logic
+    (function() {
+      // Check if user is on mobile and app is not installed
+      function isMobile() {
+        return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+      
+      function isAndroid() {
+        return /Android/i.test(navigator.userAgent);
+      }
+      
+      function isIOS() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      }
+      
+      function isAppInstalled() {
+        // Check if banner was previously dismissed
+        return localStorage.getItem('appBannerDismissed') === 'true';
+      }
+      
+      function showAppBanner() {
+        const banner = document.getElementById('smartAppBanner');
+        const header = document.querySelector('.header');
+        const main = document.querySelector('.main');
+        
+        banner.classList.add('show');
+        header.classList.add('with-banner');
+        main.classList.add('with-banner');
+      }
+      
+      function hideAppBanner() {
+        const banner = document.getElementById('smartAppBanner');
+        const header = document.querySelector('.header');
+        const main = document.querySelector('.main');
+        
+        banner.classList.remove('show');
+        header.classList.remove('with-banner');
+        main.classList.remove('with-banner');
+      }
+      
+      function dismissBanner() {
+        hideAppBanner();
+        localStorage.setItem('appBannerDismissed', 'true');
+      }
+      
+      // Initialize banner
+      function initAppBanner() {
+        // Only show for mobile users who haven't dismissed it
+        if (!isMobile() || isAppInstalled()) {
+          return;
+        }
+        
+        // Don't show for iOS (they have native Smart App Banner)
+        if (isIOS()) {
+          return;
+        }
+        
+        // Show banner after a short delay
+        setTimeout(showAppBanner, 1000);
+        
+        // Set up event listeners
+        document.getElementById('appBannerClose').addEventListener('click', dismissBanner);
+        
+        document.getElementById('appBannerInstall').addEventListener('click', function() {
+          if (isAndroid()) {
+            window.open('https://play.google.com/store/apps/details?id=com.bookanda', '_blank');
+          } else {
+            // Fallback for other platforms
+            window.open('https://play.google.com/store/apps/details?id=com.bookanda', '_blank');
+          }
+          dismissBanner();
+        });
+      }
+      
+      // Initialize when DOM is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAppBanner);
+      } else {
+        initAppBanner();
+      }
+    })();
+  </script>
 </body>
 </html>
