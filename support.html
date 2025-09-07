@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supporto - Bookanda</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="app_icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="app_icon.png">
+
+  <!-- Icona per dispositivi Apple -->
+  <link rel="apple-touch-icon" href="app_icon.png">
+
+  <meta name="description" content="Centro assistenza Bookanda. Trova risposte alle tue domande e contatta il nostro supporto.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Righteous&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      font-size: 16px;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      z-index: 1000;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Righteous', sans-serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #000;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #666;
+    }
+
+    .main {
+      padding-top: 70px;
+      min-height: 100vh;
+    }
+
+    .support-hero {
+      padding: 4rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .support-title {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: #000;
+      letter-spacing: -0.03em;
+    }
+
+    .support-subtitle {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .support-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #000;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-card {
+      border: 2px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: border-color 0.2s ease;
+    }
+
+    .contact-card:hover {
+      border-color: #000;
+    }
+
+    .contact-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .contact-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .contact-link {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .contact-link:hover {
+      background: #333;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e5e5e5;
+      padding: 2rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 1rem;
+    }
+
+    .faq-answer {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .footer {
+      background: #000;
+      color: #fff;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Righteous', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-text {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .support-hero {
+        padding: 2rem 1rem;
+      }
+
+      .support-content {
+        padding: 0 1rem 3rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .faq-item {
+        padding: 1.5rem 0;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="/" class="logo">Bookanda</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/#download" class="nav-link">Download</a></li>
+        <li><a href="/privacy-policy.html" class="nav-link">Privacy</a></li>
+        <li><a href="/terms-of-service.html" class="nav-link">Termini</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="support-hero">
+      <h1 class="support-title">Centro Assistenza</h1>
+      <p class="support-subtitle">
+        Hai bisogno di aiuto? Siamo qui per supportarti. Trova risposte alle tue domande o contattaci direttamente.
+      </p>
+    </section>
+
+    <div class="support-content">
+      <section class="section">
+        <h2 class="section-title">Contattaci</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <span class="contact-icon">📧</span>
+            <h3 class="contact-title">Email Support</h3>
+            <p class="contact-info">Rispondiamo entro 24 ore</p>
+            <a href="mailto:support@bookanda.com" class="contact-link">support@bookanda.com</a>
+          </div>
+          
+          <div class="contact-card">
+            <span class="contact-icon">💬</span>
+            <h3 class="contact-title">Chat in App</h3>
+            <p class="contact-info">Assistenza in tempo reale</p>
+            <a href="#" class="contact-link">Apri l'App</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Domande Frequenti</h2>
+        
+        <div class="faq-item">
+          <h3 class="faq-question">Come posso prenotare un appuntamento?</h3>
+          <p class="faq-answer">
+            Scarica l'app Bookanda, registrati con il tuo numero di telefono, cerca il barbiere o salone che preferisci nella tua zona e seleziona l'orario disponibile che fa per te.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Posso modificare o cancellare una prenotazione?</h3>
+          <p class="faq-answer">
+            Sì, puoi modificare o cancellare le tue prenotazioni direttamente dall'app fino a 2 ore prima dell'appuntamento programmato. Vai nella sezione "Le mie prenotazioni" e seleziona l'appuntamento che vuoi modificare.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Come funziona il pagamento?</h3>
+          <p class="faq-answer">
+            Puoi pagare direttamente nell'app con carta di credito, PayPal o altri metodi di pagamento digitali. Il pagamento avviene al momento della prenotazione o dopo il servizio, a seconda delle preferenze del salone.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Cosa devo fare se il barbiere è in ritardo o assente?</h3>
+          <p class="faq-answer">
+            Riceverai una notifica automatica in caso di ritardi o cancellazioni da parte del professionista. Potrai riprogrammare gratuitamente il tuo appuntamento o ricevere un rimborso completo se preferisci.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Come posso lasciare una recensione?</h3>
+          <p class="faq-answer">
+            Dopo ogni appuntamento completato, riceverai una notifica per lasciare una recensione e valutare il servizio ricevuto. Le tue opinioni aiutano altri clienti a scegliere e i professionisti a migliorare.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">L'app è gratuita?</h3>
+          <p class="faq-answer">
+            Sì, l'app Bookanda è completamente gratuita per i clienti. Scaricala dall'App Store o Google Play e inizia subito a prenotare i tuoi appuntamenti senza costi aggiuntivi.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Come posso diventare un partner Bookanda?</h3>
+          <p class="faq-answer">
+            Se sei un barbiere, parrucchiere o proprietario di un salone e vuoi unirti alla nostra piattaforma, contattaci all'indirizzo <a href="mailto:partner@bookanda.com" style="color: #000; font-weight: 600;">partner@bookanda.com</a> per ricevere maggiori informazioni.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Bookanda</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Termini di Servizio</a>
+        <a href="/support.html">Supporto</a>
+        <a href="mailto:support@bookanda.com">Contattaci</a>
+      </div>
+      <p class="footer-text">© 2025 Bookanda. La piattaforma per prenotazioni senza stress.</p>
+    </div>
+  </footer>
+</body>
+</html>
