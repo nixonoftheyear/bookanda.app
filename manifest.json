@@ -1,7 +1,7 @@
 {
   "name": "Bookanda",
   "short_name": "Bookanda",
-  "description": "Prenota servizi presso barbieri, parrucchieri e tattoo artist",
+  "description": "L'unica app completa per professionisti della bellezza senza commissioni",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
