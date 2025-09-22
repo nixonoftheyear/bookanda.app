@@ -3,8 +3,8 @@
     "apps": [],
     "details": [
       {
-        "appID": "TEAM_ID.com.floatingvoids.bookanda",
-        "paths": [ "/", "/*" ]
+        "appID": "98XBS2TKNJ.com.floatingvoids.bookanda",
+        "paths": [ "/appointment/*", "/a/*" ]
       }
     ]
   }
