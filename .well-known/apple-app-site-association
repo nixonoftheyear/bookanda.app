@@ -9,6 +9,10 @@
       {
         "appID": "98XBS2TKNJ.com.floatingvoids.bookanda",
         "paths": [ "/appointment/*", "/a/*" ]
+      },
+      {
+        "appID": "98XBS2TKNJ.com.floatingvoids.bookanda.dai",
+        "paths": [ "/appointment/*", "/a/*" ]
       }
     ]
   }
